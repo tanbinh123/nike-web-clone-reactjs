@@ -23,7 +23,7 @@ const MainNavigationHeader = (props) => {
   const mobileClasses = props.mobileSearchMode === true ? "hidden" : "";
   const mobileModalClass = props.mobileSearchMode === true ? "h-screen" : "";
   const mobileInputClass =
-    props.mobileSearchMode === true ? "block relative left-0 top-5 h-10 pl-1 rounded-xl z-20" : "hidden";
+    props.mobileSearchMode === true ? "block relative left-0 top-5 h-10 text-center rounded-xl z-20" : "hidden";
 
   return (
     <>
