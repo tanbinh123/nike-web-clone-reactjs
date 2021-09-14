@@ -23,9 +23,8 @@ const MainNavigationHeader = (props) => {
   const mobileClasses = props.mobileSearchMode === true ? "hidden" : "";
   const mobileModalClass = props.mobileSearchMode === true ? "h-screen" : "";
   const mobileInputClass =
-    props.mobileSearchMode === true ? "block relative z-20" : "hidden";
+    props.mobileSearchMode === true ? "block relative left-0 top-5 h-10 pl-1 rounded-xl z-20" : "hidden";
 
-    const searchDivClass = props.mobileSearchMode === true? "block relative z-20" : "hidden";
   return (
     <>
       <div className={`h-16 flex items-center justify-between`}>
@@ -104,18 +103,16 @@ const MainNavigationHeader = (props) => {
             <span className="text-2xl mr-4 hover:bg-gray-300 p-1.5 rounded-2xl">
               <BsBag />
             </span>
-            <span className="xl:hidden text-2xl mr-4">
+            <span className="xl:hidden text-xl mr-4">
                 <BsSearch
                   onClick={mobileSearchHandler}
                 />
-              <div className={`bg-gray-100 ml-2  rounded-xl p-2 relative top-5  z-20 flex items-center ${searchDivClass}`}>
                 <input
                   type="text"
                   id="search-box"
                   placeholder="Search"
-                  className={`border-none bg-gray-100 focus:outline-none  ${mobileInputClass} `}
+                  className={`border-none bg-gray-100 focus:outline-none  md:w-96 ${mobileInputClass} `}
                 />
-              </div>
             </span>
             <span
               className="text-2xl mr-3 xl:hidden cursor-pointer"
