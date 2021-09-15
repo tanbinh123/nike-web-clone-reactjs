@@ -26,7 +26,7 @@ const MainNavigationHeader = (props) => {
       : "";
   const mobileModalClass = props.mobileSearchMode === true ? "w-screen fixed left-0 top-0 bg-white z-10 h-screen" : "";
   const inputClasses = props.searchBox === true ? "w-96 transform -translate-x-full transition-all duration-500" : "";
-  const mobileDivClasses = props.mobileSearchMode === true ? "w-60 md:w-96 mt-16 ml-10 md:ml-52" : "";
+  const mobileDivClasses = props.mobileSearchMode === true ? "w-40 md:w-96 mt-16 ml-10 md:ml-52" : "";
   const mobileClasses = props.mobileSearchMode === true ? "hidden" : "";
   const mobileInputClasses = props.mobileSearchMode === true ? "block" : "hidden"
   let closeClasses;
