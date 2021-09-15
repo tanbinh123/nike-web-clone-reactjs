@@ -29,6 +29,7 @@ const MainNavigationHeader = (props) => {
   const inputClasses = props.searchBox === true ? "w-96 transform -translate-x-full transition-all duration-500" : "";
   const mobileDivClasses = props.mobileSearchMode === true ? "w-60 md:w-96 mt-16" : "";
   const mobileClasses = props.mobileSearchMode === true ? "hidden" : "";
+  const mobileInputClasses = props.mobileSearchMode === true ? "block" : "hidden"
   let closeClasses;
   if(props.searchBox || props.mobileSearchMode){
     closeClasses="block";
@@ -89,17 +90,17 @@ const MainNavigationHeader = (props) => {
         </nav>
         <div className="flex h-full items-center">
           <div
-            className={`bg-gray-100 rounded-2xl  h-1/2 items-center p-3 mx-4 xl:flex hover:bg-gray-200 ${inputClasses} ${mobileDivClasses} relative z-20`}
+            className={`bg-gray-100 rounded-2xl  h-1/2 items-center p-3 mx-4 flex hover:bg-gray-200 ${inputClasses} ${mobileDivClasses} relative z-20`}
             onClick={searchClickHandler}
           >
-            <label htmlFor="search-box" className="text-lg ">
+            <label htmlFor="search-box" className="text-lg">
               <BsSearch />
             </label>
             <input
               type="text"
               id="search-box"
               placeholder="Search"
-              className="border-none focus:outline-none w-full bg-gray-100  hover:bg-gray-200 hidden xl:block"
+              className={`border-none focus:outline-none w-full bg-gray-100 hover:bg-gray-200 xl:block ${mobileInputClasses}`}
               onClick={searchClickHandler}
             />
           </div>
