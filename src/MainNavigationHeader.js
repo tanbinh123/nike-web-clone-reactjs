@@ -5,7 +5,7 @@ import { BiX } from "react-icons/bi";
 const MainNavigationHeader = (props) => {
 
   const closeButtonHandler = () => {
-    if(window.innerWidth>1000){
+    if(window.innerWidth>1200){
       props.onCloseSeachBox();
     }else {
       props.onClickOff();
@@ -13,8 +13,7 @@ const MainNavigationHeader = (props) => {
   };
 
   const searchClickHandler = () => {
-    if(window.innerWidth>1000){
-      console.log('inside the desktop search box')
+    if(window.innerWidth>1200){
       props.onSearchBoxClick();
     }else {
       props.onClickON();
@@ -27,7 +26,7 @@ const MainNavigationHeader = (props) => {
       : "";
   const mobileModalClass = props.mobileSearchMode === true ? "w-screen fixed left-0 top-0 bg-white z-10 h-screen" : "";
   const inputClasses = props.searchBox === true ? "w-96 transform -translate-x-full transition-all duration-500" : "";
-  const mobileDivClasses = props.mobileSearchMode === true ? "w-60 md:w-96 mt-16" : "";
+  const mobileDivClasses = props.mobileSearchMode === true ? "w-60 md:w-96 mt-16 ml-10 md:ml-52" : "";
   const mobileClasses = props.mobileSearchMode === true ? "hidden" : "";
   const mobileInputClasses = props.mobileSearchMode === true ? "block" : "hidden"
   let closeClasses;
@@ -88,7 +87,7 @@ const MainNavigationHeader = (props) => {
             </li>
           </ul>
         </nav>
-        <div className="flex h-full items-center">
+        <div className="flex h-full justify-start items-center">
           <div
             className={`bg-gray-100 rounded-2xl  h-1/2 items-center p-3 mx-4 flex hover:bg-gray-200 ${inputClasses} ${mobileDivClasses} relative z-20`}
             onClick={searchClickHandler}
