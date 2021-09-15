@@ -1,29 +1,40 @@
-import React from "react";
+import React  from "react";
 import { BsSearch, FaRegHeart, BsBag } from "react-icons/all";
 import { BiX } from "react-icons/bi";
 
 const MainNavigationHeader = (props) => {
-  const mobileSearchHandler = () => {
-    props.onSearchBoxClick();
-    props.onClickON();
-  };
 
   const closeButtonHandler = () => {
-    props.onClickOff();
-    props.onCloseSeachBox();
+    if(window.innerWidth>1000){
+      props.onCloseSeachBox();
+    }else {
+      props.onClickOff();
+    }
   };
 
-  console.log(props.searchBox);
+  const searchClickHandler = () => {
+    if(window.innerWidth>1000){
+      console.log('inside the desktop search box')
+      props.onSearchBoxClick();
+    }else {
+      props.onClickON();
+    }
+  }
+
   const searchBoxClasses =
     props.searchBox === true
-      ? "w-screen fixed left-0 top-0 h-1/2 bg-white z-10"
-      : "hidden";
-  const inputClasses =
-    props.searchBox === true ? "w-96 transform -translate-x-full" : "";
+      ? "w-screen fixed left-0 top-0 bg-white h-1/2 z-10 transform transition-all duration-500"
+      : "";
+  const mobileModalClass = props.mobileSearchMode === true ? "w-screen fixed left-0 top-0 bg-white z-10 h-screen" : "";
+  const inputClasses = props.searchBox === true ? "w-96 transform -translate-x-full transition-all duration-500" : "";
+  const mobileDivClasses = props.mobileSearchMode === true ? "w-60 md:w-96 mt-16" : "";
   const mobileClasses = props.mobileSearchMode === true ? "hidden" : "";
-  const mobileModalClass = props.mobileSearchMode === true ? "h-screen" : "";
-  const mobileInputClass =
-    props.mobileSearchMode === true ? "block relative left-0 top-5 h-10  rounded-xl z-20" : "hidden";
+  let closeClasses;
+  if(props.searchBox || props.mobileSearchMode){
+    closeClasses="block";
+  }else {
+    closeClasses="hidden";
+  }
 
   return (
     <>
@@ -36,9 +47,9 @@ const MainNavigationHeader = (props) => {
           />
         </span>
         <div
-          className={`${searchBoxClasses} transform transition-all duration-500 ${mobileModalClass}`}
+          className={`${searchBoxClasses} ${mobileModalClass} `}
         >
-          <span className="text-3xl text-black mr-10 mt-10 float-right cursor-pointer p-2 bg-gray-200 rounded-3xl">
+          <span className={`text-2xl text-black mr-10 mt-12 float-right cursor-pointer p-2 bg-gray-200 rounded-3xl ${closeClasses}`}>
             <BiX onClick={closeButtonHandler} />
           </span>
         </div>
@@ -78,10 +89,8 @@ const MainNavigationHeader = (props) => {
         </nav>
         <div className="flex h-full items-center">
           <div
-            className={`w-40 bg-gray-100 rounded-2xl h-1/2  items-center p-3 mx-4 hidden xl:flex hover:bg-gray-200 ${inputClasses}  transition-all duration-500 relative z-20`}
-            onClick={() => {
-              props.onSearchBoxClick();
-            }}
+            className={`bg-gray-100 rounded-2xl  h-1/2 items-center p-3 mx-4 xl:flex hover:bg-gray-200 ${inputClasses} ${mobileDivClasses} relative z-20`}
+            onClick={searchClickHandler}
           >
             <label htmlFor="search-box" className="text-lg ">
               <BsSearch />
@@ -90,10 +99,8 @@ const MainNavigationHeader = (props) => {
               type="text"
               id="search-box"
               placeholder="Search"
-              className="border-none focus:outline-none w-full bg-gray-100  hover:bg-gray-200"
-              onClick={() => {
-                props.onSearchBoxClick();
-              }}
+              className="border-none focus:outline-none w-full bg-gray-100  hover:bg-gray-200 hidden xl:block"
+              onClick={searchClickHandler}
             />
           </div>
           <div className=" flex items-center">
@@ -102,17 +109,6 @@ const MainNavigationHeader = (props) => {
             </span>
             <span className="text-2xl mr-4 hover:bg-gray-300 p-1.5 rounded-2xl">
               <BsBag />
-            </span>
-            <span className="xl:hidden text-xl mr-4">
-                <BsSearch
-                  onClick={mobileSearchHandler}
-                />
-                <input
-                  type="text"
-                  id="search-box"
-                  placeholder="Search"
-                  className={`border-none bg-gray-100 focus:outline-none  md:w-96 ${mobileInputClass} `}
-                />
             </span>
             <span
               className="text-2xl mr-3 xl:hidden cursor-pointer"
